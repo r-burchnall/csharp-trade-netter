@@ -5,6 +5,5 @@ namespace trade_netter
     {
         Oil,
         Gas,
-        Coal
     }
 }

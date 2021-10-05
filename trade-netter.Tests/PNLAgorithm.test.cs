@@ -10,28 +10,6 @@ namespace trade_netter.Tests
         {
         }
 
-        //[Test]
-        //public void ShouldCalculatePNLFromDyanmicValues()
-        //{
-        //    PNLAlgorithm algo = new PNLAlgorithm();
-
-        //    List<TradeModel> trades = new List<TradeModel>() {
-        //        algo.CreateTrade(TradeDirection.Buy, 1, Fuel.Oil),
-        //        algo.CreateTrade(TradeDirection.Sell, 4, Fuel.Oil),
-        //        algo.CreateTrade(TradeDirection.Buy, 4, Fuel.Oil)
-        //    };
-
-        //    TradeModel.PrintRowHeadingsToStdOut();
-        //    foreach (var trade in trades)
-        //    {
-        //        trade.PrintDetailsToStdOut();
-        //    }
-
-        //    int pnl = algo.CalculatePNLFromTrades(trades);
-
-        //    Assert.AreEqual(pnl, 8);
-        //}
-
         [Test] // Could use test-cases here, however creating a new list of trades in an attibute is ugly.
         public void ShouldCalculatePNLFromExample1()
         {
@@ -48,7 +26,7 @@ namespace trade_netter.Tests
             Assert.AreEqual(0, pnl);
         }
 
-        [Test] // Could use test-cases here, however creating a new list of trades in an attibute is ugly.
+        [Test] 
         public void ShouldCalculatePNLFromExample2()
         {
             PNLAlgorithm algo = new PNLAlgorithm();
@@ -63,7 +41,7 @@ namespace trade_netter.Tests
             Assert.AreEqual(20, pnl);
         }
 
-        [Test] // Could use test-cases here, however creating a new list of trades in an attibute is ugly.
+        [Test] 
         public void ShouldCalculatePNLFromExample3()
         {
             PNLAlgorithm algo = new PNLAlgorithm();
@@ -84,7 +62,7 @@ namespace trade_netter.Tests
             Assert.AreEqual(10, pnl);
         }
 
-        [Test] // Could use test-cases here, however creating a new list of trades in an attibute is ugly.
+        [Test]
         public void ShouldCalculatePNLFromExample4()
         {
             PNLAlgorithm algo = new PNLAlgorithm();
@@ -103,10 +81,10 @@ namespace trade_netter.Tests
 
             int pnl = algo.CalculatePNLFromTrades(trades);
 
-            Assert.AreEqual(-10, pnl);
+            Assert.AreEqual(-20, pnl);
         }
 
-        [Test] // Could use test-cases here, however creating a new list of trades in an attibute is ugly.
+        [Test]
         public void ShouldCalculatePNLFromExample5()
         {
             PNLAlgorithm algo = new PNLAlgorithm();
@@ -121,16 +99,6 @@ namespace trade_netter.Tests
             int pnl = algo.CalculatePNLFromTrades(trades);
 
             Assert.AreEqual(-5, pnl);
-        }
-
-        [Test]
-        public void CreateTradeWithExpectedProps()
-        {
-            PNLAlgorithm algo = new PNLAlgorithm();
-            var sut = algo.CreateTrade(TradeDirection.Buy, 1, Fuel.Oil);
-
-            Assert.AreEqual(false, sut.isSale);
-            Assert.IsInstanceOf(typeof(TradeModel), sut);
         }
     }
 }
