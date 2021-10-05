@@ -11,15 +11,10 @@ namespace trade_netter
             List<TradeModel> sales = trades.Where(trade => trade.isSale).ToList();
 
             // Flattening purchase trades into list where we can remove instances when sold.
-            List<(int, Fuel)> purchases = trades.Where(trade => !trade.isSale)
-                .SelectMany(i => {
-                    List<(int, Fuel)> prices = new List<(int, Fuel)>();
-                    for (int j = 0; j < i.quantity; j++)
-                    {
-                        prices.Add((i.price, i.underlying));
-                    }
-                    return prices;
-                }).ToList();
+            List<(int, Fuel)> purchases = trades
+                .Where(trade => !trade.isSale)
+                .SelectMany(i => i.explodedList)
+                .ToList();
 
             int pnl = 0;
 

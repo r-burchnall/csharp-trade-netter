@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+
 namespace trade_netter
 {
     /**
@@ -20,7 +22,7 @@ namespace trade_netter
             this.direction = direction;
             this.quantity = quantity;
             this.price = price;
-            this.underlying = underlying; 
+            this.underlying = underlying;
         }
 
         public static void PrintRowHeadingsToStdOut() {
@@ -33,5 +35,16 @@ namespace trade_netter
         }
 
         public bool isSale => this.direction == TradeDirection.Sell;
+
+        public List<(int, Fuel)> explodedList {
+            get { 
+                var prices = new List<(int, Fuel)>();
+                for (int j = 0; j< quantity; j++)
+                {
+                    prices.Add((price, underlying));
+                }
+                return prices;
+            }
+        }
     }
 }
