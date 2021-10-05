@@ -6,10 +6,10 @@ namespace trade_netter
      */
     public class TradeModel
     {
-        private readonly TradeDirection direction;
-        private readonly int quantity;
-        private readonly int price;
-        private readonly Fuel underlying;
+        public readonly TradeDirection direction;
+        public readonly int quantity;
+        public readonly int price;
+        public readonly Fuel underlying;
 
         public TradeModel(
             TradeDirection direction,
@@ -23,9 +23,15 @@ namespace trade_netter
             this.underlying = underlying; 
         }
 
-        public int CalculatePNL(int price) {
-            // Some math
-            return 0;
+        public static void PrintRowHeadingsToStdOut() {
+            Console.WriteLine($"| Dir | Quan | Price | Fuel |");
         }
+
+        public void PrintDetailsToStdOut()
+        {
+            Console.WriteLine($"| {direction} | {quantity} | {price} | {underlying} |");
+        }
+
+        public bool isSale => this.direction == TradeDirection.Sell;
     }
 }
